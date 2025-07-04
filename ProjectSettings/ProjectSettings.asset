@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 5d449570bc1a986418a78460b985fd35
+  productGUID: 00000000000000000000000000000000
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -250,8 +250,8 @@ PlayerSettings:
   iOSAutomaticallyDetectAndAddCapabilities: 1
   appleEnableProMotion: 0
   shaderPrecisionModel: 0
-  clonedFromGUID: c0afd0d1d80e3634a9dac47e8a0426ea
-  templatePackageId: com.unity.template.3d@9.1.0
+  clonedFromGUID: bdd45bd4c8266cf40857d1c4503395a0
+  templatePackageId: 
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 0
   useCustomLauncherManifest: 0
@@ -849,7 +849,7 @@ PlayerSettings:
   cloudProjectId: 9df9fca1-aafd-43cd-8151-1ecdb495601c
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: BaskomPaTri 2025-07-04_20-54-34
+  projectName: 
   organizationId: saggington
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
