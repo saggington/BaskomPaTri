@@ -113,7 +113,13 @@ namespace itsmakingthings_daynightcycle
 			timeText.text = _timeStringBuilder.ToString();
 		}
 
-		private void UpdateLighting()
+		public void GetTimeNow(out int hours, out int minutes)
+		{
+			hours = Mathf.FloorToInt(_timeOfDay);
+			minutes = Mathf.FloorToInt((_timeOfDay - hours) * 60);
+        }
+
+        private void UpdateLighting()
 		{
 			if (sceneCamera == null || sunLight == null) return;
 
