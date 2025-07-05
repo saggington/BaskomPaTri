@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         var a = Instantiate(b.buildingPrefab, where.position, Quaternion.identity);
         a.transform.SetParent(BuildingPool, true);
         buildings.Add(b);
-        economyManager.ReduceRessource(0, b.cost.money, b.cost.materials, b.cost.population);
+        economyManager.ReduceRessource(b.cost.population, b.cost.money, b.cost.materials);
         economyManager.SetIncomeGenerator();
     }
 

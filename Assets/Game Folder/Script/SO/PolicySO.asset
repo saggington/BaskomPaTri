@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56d0487ca536764aa6e1ead72078f78, type: 3}
+  m_Name: PolicySO
+  m_EditorClassIdentifier: 
+  taxPolicy:
+    TaxDescription:
+    - Name: Tax Increase
+      Description: Increase Tax
+    - Name: Tax Burning
+      Description: Increase Tax
+    TaxModifiers:
+    - fPopulationMod: -1
+      fMoneyMod: 2
+      fMaterialsMod: 0
+      fWorkersMod: 0
+    - fPopulationMod: 0
+      fMoneyMod: 2
+      fMaterialsMod: 0
+      fWorkersMod: 0
+    - fPopulationMod: 0
+      fMoneyMod: 3
+      fMaterialsMod: 0
+      fWorkersMod: 0
+    - fPopulationMod: 0
+      fMoneyMod: 2
+      fMaterialsMod: 0
+      fWorkersMod: 0
+  foodPolicy:
+    FoodDescription: []
+    FoodModifiers: []
+  materialPolicy:
+    MaterialDescription: []
+    MaterialModifiers: []
