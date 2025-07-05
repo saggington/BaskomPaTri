@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     protected CitizenAI citizenAI;
     protected EconomyManager economyManager;
     protected DayNightCycle dayNightCycle;
+    public Transform BuildingPool;
 
     [Header("Buildable Buildings")]
     public List<Building> buildings;
@@ -35,13 +36,22 @@ public class GameManager : MonoBehaviour
     {
         dayNightCycle = GetComponent<DayNightCycle>();
         economyManager = GetComponent<EconomyManager>();
+        governorAI = GetComponent<GovernorAI>();
+        citizenAI = GetComponent<CitizenAI>();
     }
 
     public void BuildBuilding(Building b, Transform where)
     {
-        Instantiate(b.buildingPrefab, where.position, Quaternion.identity);
+        var a = Instantiate(b.buildingPrefab, where.position, Quaternion.identity);
+        a.transform.SetParent(BuildingPool, true);
         buildings.Add(b);
+        economyManager.ReduceRessource(0, b.cost.money, b.cost.materials, b.cost.workers);
         economyManager.SetIncomeGenerator();
+    }
+
+    public void RegisterTile(Buildable b)
+    {
+        governorAI.RegisterTile(b, b.transform.position);
     }
 }
 
@@ -51,16 +61,23 @@ public class Building
     public string name;
     public BuildingType type;
     public int level;
-    public int cost;
+    public BuildingCost cost;
     public int upkeep;
     public int production;
     public GameObject buildingPrefab;
 }
 
+[System.Serializable]
+public struct BuildingCost
+{
+    public int money;
+    public int materials;
+    public int workers;
+}
+
 public enum BuildingType
 {
     Undefined = 0,
-    Road = 1,
     Residential,
     Commercial,
     Industrial

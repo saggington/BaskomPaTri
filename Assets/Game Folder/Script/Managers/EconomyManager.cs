@@ -14,7 +14,6 @@ public class EconomyManager : MonoBehaviour
     [Header("Tax and Policy")]
     [SerializeField] PolicyType CurrentPolicyType = PolicyType.None;
     [SerializeField] PolicyModifier CurrentPolicyModifier;
-    [SerializeField] float TaxRate;
 
     [Header("Income Setting")]
     [SerializeField] float timeToGenerateIncome = 5f;
@@ -40,6 +39,27 @@ public class EconomyManager : MonoBehaviour
     private void Start()
     {
         InvokeRepeating(nameof(GenerateIncome), timeToGenerateIncome, timeToGenerateIncome);
+    }
+
+    public void GetRessource(out int population, out int money, out int materials, out int workers)
+    {
+        population = Population;
+        money = Money;
+        materials = Materials;
+        workers = Workers;
+    }
+
+    public void ReduceRessource(int population, int money, int materials, int workers)
+    {
+        Population -= population;
+        Money -= money;
+        Materials -= materials;
+        Workers -= workers;
+    }
+
+    public PolicyType GetCurrentPolicy()
+    {
+        return CurrentPolicyType;
     }
 
     #region POLICY MANAGEMENT
@@ -74,12 +94,11 @@ public class EconomyManager : MonoBehaviour
         CurrentPolicyModifier = new PolicyModifier
         {
             policyType = PolicyType.Tax,
-            fPopulationMod = 1f,
-            fMoneyMod = 3f,
+            fPopulationMod = -0.5f,
+            fMoneyMod = 2f,
             fMaterialsMod = 0.5f,
             fWorkersMod = 1f
         };
-        Money += (int)(Population * TaxRate);
     }
 
     private void ApplySubsidyPolicy()
@@ -88,11 +107,10 @@ public class EconomyManager : MonoBehaviour
         {
             policyType = PolicyType.Subsidy,
             fPopulationMod = 2f,
-            fMoneyMod = -2f,
+            fMoneyMod = -1f,
             fMaterialsMod = 1f,
             fWorkersMod = 0.5f
         };
-        Money -= (int)(Population * TaxRate * 0.5f);
     }
 
     private void ApplyRegulationPolicy()
@@ -105,7 +123,6 @@ public class EconomyManager : MonoBehaviour
             fMaterialsMod = 2f,
             fWorkersMod = 1.5f
         };
-        Money += (int)(Population * 0.05f);
     }
     #endregion
 
@@ -113,11 +130,21 @@ public class EconomyManager : MonoBehaviour
 
     public void GenerateIncome()
     {
-        Population += Mathf.RoundToInt(incomeGenerator.iPopulation * CurrentPolicyModifier.fPopulationMod);
-        Money += Mathf.RoundToInt(incomeGenerator.iMoney * CurrentPolicyModifier.fMoneyMod);
+        Population += Mathf.CeilToInt(incomeGenerator.iPopulation * CurrentPolicyModifier.fPopulationMod);
+        Money += Mathf.RoundToInt((incomeGenerator.iMoney * CurrentPolicyModifier.fMoneyMod) - GetUpkeepCost());
         Materials += Mathf.RoundToInt(incomeGenerator.iMaterials * CurrentPolicyModifier.fMaterialsMod);
         Workers += Mathf.RoundToInt(incomeGenerator.iWorkers * CurrentPolicyModifier.fWorkersMod);
         Debug.Log($"Income Generated: Population = {Population}, Money = {Money}, Materials = {Materials}, Workers = {Workers}");
+    }
+
+    public float GetUpkeepCost()
+    {
+        float upkeepCost = 0f;
+        foreach(Building building in GameManager.Instance.buildings)
+        {
+            upkeepCost += building.upkeep;
+        }
+        return upkeepCost;
     }
 
     public void SetIncomeGenerator()
@@ -131,6 +158,7 @@ public class EconomyManager : MonoBehaviour
                     break;
                 case BuildingType.Residential:
                     incomeGenerator.iPopulation += building.production;
+                    incomeGenerator.iWorkers += Mathf.FloorToInt(building.production * CurrentPolicyModifier.fWorkersMod);
                     break;
                 case BuildingType.Industrial:
                     incomeGenerator.iMaterials += building.production;

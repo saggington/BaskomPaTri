@@ -339,149 +339,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1321444419
-GameObject:
+--- !u!1001 &410725639654993084
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1321444422}
-  - component: {fileID: 1321444421}
-  - component: {fileID: 1321444420}
-  - component: {fileID: 1321444423}
-  m_Layer: 0
-  m_Name: Managers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1321444420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321444419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87dbfef79d5b6f241b1809f263ba114e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildings: []
---- !u!114 &1321444421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321444419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b403ce75521eb8448c23153d20fe1d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTimeOfDay: 12
-  cycleSpeed: 0.01
-  resetSpeed: 1
-  forwardsOnly: 0
-  sunLight: {fileID: 705507994}
-  rotationPivot: {fileID: 1032047998}
-  rotationOffsetY: 0
-  sceneCamera: {fileID: 963194227}
-  timeText: {fileID: 0}
-  enableFogControl: 1
-  waterRenderer: {fileID: 0}
-  waterColorProperty: _WaterColor
-  daybreak:
-    ambientColor: {r: 0, g: 0, b: 0, a: 0}
-    sunColor: {r: 0, g: 0, b: 0, a: 0}
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    sunIntensity: 0
-    shadowStrength: 0
-    fogColor: {r: 0, g: 0, b: 0, a: 0}
-    fogDensity: 0
-    waterColor: {r: 0, g: 0, b: 0, a: 0}
-  midday:
-    ambientColor: {r: 0, g: 0, b: 0, a: 0}
-    sunColor: {r: 0, g: 0, b: 0, a: 0}
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    sunIntensity: 0
-    shadowStrength: 0
-    fogColor: {r: 0, g: 0, b: 0, a: 0}
-    fogDensity: 0
-    waterColor: {r: 0, g: 0, b: 0, a: 0}
-  sunset:
-    ambientColor: {r: 0, g: 0, b: 0, a: 0}
-    sunColor: {r: 0, g: 0, b: 0, a: 0}
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    sunIntensity: 0
-    shadowStrength: 0
-    fogColor: {r: 0, g: 0, b: 0, a: 0}
-    fogDensity: 0
-    waterColor: {r: 0, g: 0, b: 0, a: 0}
-  night:
-    ambientColor: {r: 0, g: 0, b: 0, a: 0}
-    sunColor: {r: 0, g: 0, b: 0, a: 0}
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    sunIntensity: 0
-    shadowStrength: 0
-    fogColor: {r: 0, g: 0, b: 0, a: 0}
-    fogDensity: 0
-    waterColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!4 &1321444422
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321444419}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1321444423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321444419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f410d58a6bb1ed341bc9cffb6f26ba94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Population: 0
-  Money: 0
-  Materials: 0
-  Workers: 0
-  incomeGenerator:
-    policyType: 0
-    iPopulation: 0
-    iMoney: 0
-    iMaterials: 0
-    iWorkers: 0
-  CurrentPolicyType: 0
-  CurrentPolicyModifier:
-    policyType: 0
-    fPopulationMod: 0
-    fMoneyMod: 0
-    fMaterialsMod: 0
-    fWorkersMod: 0
-  TaxRate: 0
-  timeToGenerateIncome: 5
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444255936864759805, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_Name
+      value: Managers
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: sunLight
+      value: 
+      objectReference: {fileID: 705507994}
+    - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: sceneCamera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: rotationPivot
+      value: 
+      objectReference: {fileID: 1032047998}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 1321444422}
+  - {fileID: 410725639654993084}
   - {fileID: 1032047998}

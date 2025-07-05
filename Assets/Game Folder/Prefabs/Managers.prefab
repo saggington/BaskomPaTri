@@ -1,0 +1,267 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3444255936864759805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3203154816279076715}
+  - component: {fileID: 6071240103999637639}
+  - component: {fileID: 172002920501283486}
+  - component: {fileID: 8058225040290281655}
+  - component: {fileID: 350520904840284051}
+  - component: {fileID: 604525580620013660}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3203154816279076715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444255936864759805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9093327457846603798}
+  - {fileID: 2308949531030298391}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6071240103999637639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444255936864759805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b403ce75521eb8448c23153d20fe1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTimeOfDay: 12
+  cycleSpeed: 0.01
+  resetSpeed: 1
+  forwardsOnly: 0
+  sunLight: {fileID: 0}
+  rotationPivot: {fileID: 0}
+  rotationOffsetY: 0
+  sceneCamera: {fileID: 0}
+  timeText: {fileID: 0}
+  enableFogControl: 1
+  waterRenderer: {fileID: 0}
+  waterColorProperty: _WaterColor
+  daybreak:
+    ambientColor: {r: 0, g: 0, b: 0, a: 0}
+    sunColor: {r: 0, g: 0, b: 0, a: 0}
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    sunIntensity: 0
+    shadowStrength: 0
+    fogColor: {r: 0, g: 0, b: 0, a: 0}
+    fogDensity: 0
+    waterColor: {r: 0, g: 0, b: 0, a: 0}
+  midday:
+    ambientColor: {r: 0, g: 0, b: 0, a: 0}
+    sunColor: {r: 0, g: 0, b: 0, a: 0}
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    sunIntensity: 0
+    shadowStrength: 0
+    fogColor: {r: 0, g: 0, b: 0, a: 0}
+    fogDensity: 0
+    waterColor: {r: 0, g: 0, b: 0, a: 0}
+  sunset:
+    ambientColor: {r: 0, g: 0, b: 0, a: 0}
+    sunColor: {r: 0, g: 0, b: 0, a: 0}
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    sunIntensity: 0
+    shadowStrength: 0
+    fogColor: {r: 0, g: 0, b: 0, a: 0}
+    fogDensity: 0
+    waterColor: {r: 0, g: 0, b: 0, a: 0}
+  night:
+    ambientColor: {r: 0, g: 0, b: 0, a: 0}
+    sunColor: {r: 0, g: 0, b: 0, a: 0}
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    sunIntensity: 0
+    shadowStrength: 0
+    fogColor: {r: 0, g: 0, b: 0, a: 0}
+    fogDensity: 0
+    waterColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &172002920501283486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444255936864759805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87dbfef79d5b6f241b1809f263ba114e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildingPool: {fileID: 9093327457846603798}
+  buildings: []
+--- !u!114 &8058225040290281655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444255936864759805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f410d58a6bb1ed341bc9cffb6f26ba94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Population: 100
+  Money: 100
+  Materials: 100
+  Workers: 100
+  incomeGenerator:
+    policyType: 0
+    iPopulation: 0
+    iMoney: 0
+    iMaterials: 0
+    iWorkers: 0
+  CurrentPolicyType: 2
+  CurrentPolicyModifier:
+    policyType: 0
+    fPopulationMod: 0
+    fMoneyMod: 0
+    fMaterialsMod: 0
+    fWorkersMod: 0
+  timeToGenerateIncome: 3
+--- !u!114 &350520904840284051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444255936864759805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb482b9e8bbe5294ca17ad74f6b0575c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &604525580620013660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444255936864759805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f99c305e5460dd4f9d133125e1af137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildableBuilding:
+  - name: House
+    type: 1
+    level: 0
+    cost:
+      money: 10
+      materials: 5
+      workers: 0
+    upkeep: 1
+    production: 5
+    buildingPrefab: {fileID: 100000, guid: 22106dc63dce41746ad234a91af2d657, type: 3}
+  - name: Cafe
+    type: 2
+    level: 0
+    cost:
+      money: 15
+      materials: 10
+      workers: 3
+    upkeep: 2
+    production: 10
+    buildingPrefab: {fileID: 100000, guid: 9ccda285cd5f1ce4fa00133b50ba5cbc, type: 3}
+  - name: Factory
+    type: 3
+    level: 0
+    cost:
+      money: 10
+      materials: 15
+      workers: 5
+    upkeep: 5
+    production: 15
+    buildingPrefab: {fileID: 100000, guid: f6674c1362ba984468bc1e71a2323d66, type: 3}
+  buildableTiles: []
+  BuildChance: 0.2
+  ResidentialChance: 0.5
+  CommercialChance: 0.3
+  IndustrialChance: 0.2
+  ConsiderBuildInterval: 3
+--- !u!1 &4424776341476962286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2308949531030298391}
+  m_Layer: 0
+  m_Name: CitizenPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2308949531030298391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4424776341476962286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3203154816279076715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8323284103820194204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9093327457846603798}
+  m_Layer: 0
+  m_Name: BuildingPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9093327457846603798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323284103820194204}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3203154816279076715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

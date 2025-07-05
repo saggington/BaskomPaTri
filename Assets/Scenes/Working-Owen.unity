@@ -791,6 +791,7 @@ GameObject:
   - component: {fileID: 50869031}
   - component: {fileID: 50869030}
   - component: {fileID: 50869029}
+  - component: {fileID: 50869032}
   m_Layer: 0
   m_Name: Floor_Tile (15)
   m_TagString: Untagged
@@ -887,6 +888,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50869027}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &50869032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50869027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &54981708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3963,6 +3988,7 @@ GameObject:
   - component: {fileID: 247476986}
   - component: {fileID: 247476985}
   - component: {fileID: 247476984}
+  - component: {fileID: 247476987}
   m_Layer: 0
   m_Name: Floor_Tile (6)
   m_TagString: Untagged
@@ -4059,6 +4085,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247476982}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &247476987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247476982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &247763731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5225,6 +5275,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 288b117258616aa4f928ba6f91dc47c3, type: 3}
   m_PrefabInstance: {fileID: 305033269}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &305411961
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203154816279076715, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444255936864759805, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: m_Name
+      value: Managers
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
 --- !u!1001 &310335017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5453,6 +5560,7 @@ GameObject:
   - component: {fileID: 324329598}
   - component: {fileID: 324329597}
   - component: {fileID: 324329596}
+  - component: {fileID: 324329599}
   m_Layer: 0
   m_Name: Floor_Tile (5)
   m_TagString: Untagged
@@ -5549,6 +5657,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324329594}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &324329599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324329594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &324895448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5673,6 +5805,7 @@ GameObject:
   - component: {fileID: 328692816}
   - component: {fileID: 328692815}
   - component: {fileID: 328692814}
+  - component: {fileID: 328692817}
   m_Layer: 0
   m_Name: Floor_Tile
   m_TagString: Untagged
@@ -5769,6 +5902,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328692812}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &328692817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328692812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &335723326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10397,6 +10554,7 @@ GameObject:
   - component: {fileID: 584231426}
   - component: {fileID: 584231425}
   - component: {fileID: 584231424}
+  - component: {fileID: 584231427}
   m_Layer: 0
   m_Name: Floor_Tile (9)
   m_TagString: Untagged
@@ -10493,6 +10651,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584231422}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &584231427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584231422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &587333858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13421,6 +13603,7 @@ GameObject:
   - component: {fileID: 740890335}
   - component: {fileID: 740890334}
   - component: {fileID: 740890333}
+  - component: {fileID: 740890336}
   m_Layer: 0
   m_Name: Floor_Tile (10)
   m_TagString: Untagged
@@ -13517,6 +13700,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740890331}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &740890336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740890331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &741117139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14675,6 +14882,7 @@ GameObject:
   - component: {fileID: 814660397}
   - component: {fileID: 814660396}
   - component: {fileID: 814660395}
+  - component: {fileID: 814660398}
   m_Layer: 0
   m_Name: Floor_Tile (12)
   m_TagString: Untagged
@@ -14771,6 +14979,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814660393}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &814660398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814660393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &821234858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18457,6 +18689,7 @@ GameObject:
   - component: {fileID: 1034477868}
   - component: {fileID: 1034477867}
   - component: {fileID: 1034477866}
+  - component: {fileID: 1034477869}
   m_Layer: 0
   m_Name: Floor_Tile (11)
   m_TagString: Untagged
@@ -18553,6 +18786,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034477864}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1034477869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034477864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &1040382370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20513,6 +20770,7 @@ GameObject:
   - component: {fileID: 1138778954}
   - component: {fileID: 1138778953}
   - component: {fileID: 1138778952}
+  - component: {fileID: 1138778955}
   m_Layer: 0
   m_Name: Floor_Tile (2)
   m_TagString: Untagged
@@ -20609,6 +20867,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138778950}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1138778955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138778950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &1141912449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23649,6 +23931,7 @@ GameObject:
   - component: {fileID: 1278783417}
   - component: {fileID: 1278783416}
   - component: {fileID: 1278783415}
+  - component: {fileID: 1278783418}
   m_Layer: 0
   m_Name: Floor_Tile (3)
   m_TagString: Untagged
@@ -23745,6 +24028,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278783413}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1278783418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278783413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &1279532954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24999,6 +25306,7 @@ GameObject:
   - component: {fileID: 1348057634}
   - component: {fileID: 1348057633}
   - component: {fileID: 1348057632}
+  - component: {fileID: 1348057635}
   m_Layer: 0
   m_Name: Floor_Tile (13)
   m_TagString: Untagged
@@ -25095,6 +25403,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348057630}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1348057635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348057630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &1348137020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27747,6 +28079,7 @@ GameObject:
   - component: {fileID: 1455838926}
   - component: {fileID: 1455838925}
   - component: {fileID: 1455838924}
+  - component: {fileID: 1455838927}
   m_Layer: 0
   m_Name: Floor_Tile (4)
   m_TagString: Untagged
@@ -27843,6 +28176,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455838922}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1455838927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455838922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &1460788000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32330,6 +32687,7 @@ GameObject:
   - component: {fileID: 1735619163}
   - component: {fileID: 1735619162}
   - component: {fileID: 1735619161}
+  - component: {fileID: 1735619164}
   m_Layer: 0
   m_Name: Floor_Tile (14)
   m_TagString: Untagged
@@ -32426,6 +32784,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735619159}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1735619164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735619159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &1737090356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36026,6 +36408,7 @@ GameObject:
   - component: {fileID: 1927092020}
   - component: {fileID: 1927092019}
   - component: {fileID: 1927092018}
+  - component: {fileID: 1927092021}
   m_Layer: 0
   m_Name: Floor_Tile (7)
   m_TagString: Untagged
@@ -36122,6 +36505,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927092016}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1927092021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927092016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &1928420583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37600,6 +38007,7 @@ GameObject:
   - component: {fileID: 2005077108}
   - component: {fileID: 2005077107}
   - component: {fileID: 2005077106}
+  - component: {fileID: 2005077109}
   m_Layer: 0
   m_Name: Floor_Tile (1)
   m_TagString: Untagged
@@ -37696,6 +38104,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005077104}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2005077109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005077104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &2005160665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38792,6 +39224,7 @@ GameObject:
   - component: {fileID: 2043882644}
   - component: {fileID: 2043882643}
   - component: {fileID: 2043882642}
+  - component: {fileID: 2043882645}
   m_Layer: 0
   m_Name: Floor_Tile (8)
   m_TagString: Untagged
@@ -38888,6 +39321,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043882640}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2043882645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043882640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069da87c40c77914b81359d8fa107ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 0
+  Building:
+    name: 
+    type: 0
+    level: 0
+    cost:
+      money: 0
+      materials: 0
+      workers: 0
+    upkeep: 0
+    production: 0
+    buildingPrefab: {fileID: 0}
 --- !u!1001 &2046682920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40628,3 +41085,4 @@ SceneRoots:
   - {fileID: 1704015174}
   - {fileID: 1416758924}
   - {fileID: 1388389232}
+  - {fileID: 305411961}
