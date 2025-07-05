@@ -1,5 +1,8 @@
 using UnityEngine;
 using itsmakingthings_daynightcycle;
+using System;
+using UnityEngine.Tilemaps;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +16,7 @@ public class GameManager : MonoBehaviour
     protected DayNightCycle dayNightCycle;
 
     [Header("Buildable Buildings")]
-    public Building[] buildings;
+    public List<Building> buildings;
 
     private void Awake()
     {
@@ -34,21 +37,11 @@ public class GameManager : MonoBehaviour
         economyManager = GetComponent<EconomyManager>();
     }
 
-    private void Update()
+    public void BuildBuilding(Building b, Transform where)
     {
-
-    }
-
-    public Building FindBuilding(string name)
-    {
-        foreach (Building building in buildings)
-        {
-            if (building.name.Equals(name, System.StringComparison.OrdinalIgnoreCase))
-            {
-                return building;
-            }
-        }
-        return null;
+        Instantiate(b.buildingPrefab, where.position, Quaternion.identity);
+        buildings.Add(b);
+        economyManager.SetIncomeGenerator();
     }
 }
 
@@ -62,20 +55,12 @@ public class Building
     public int upkeep;
     public int production;
     public GameObject buildingPrefab;
-
-    public Building(string name, int level, int cost, int upkeep, int production)
-    {
-        this.name = name;
-        this.level = level;
-        this.cost = cost;
-        this.upkeep = upkeep;
-        this.production = production;
-    }
 }
 
 public enum BuildingType
 {
     Undefined = 0,
+    Road = 1,
     Residential,
     Commercial,
     Industrial

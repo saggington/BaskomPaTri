@@ -458,6 +458,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f410d58a6bb1ed341bc9cffb6f26ba94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Population: 0
+  Money: 0
+  Materials: 0
+  Workers: 0
+  incomeGenerator:
+    policyType: 0
+    iPopulation: 0
+    iMoney: 0
+    iMaterials: 0
+    iWorkers: 0
+  CurrentPolicyType: 0
+  CurrentPolicyModifier:
+    policyType: 0
+    fPopulationMod: 0
+    fMoneyMod: 0
+    fMaterialsMod: 0
+    fWorkersMod: 0
+  TaxRate: 0
+  timeToGenerateIncome: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

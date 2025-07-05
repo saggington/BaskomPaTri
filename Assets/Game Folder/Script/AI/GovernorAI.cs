@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class GovernorAI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Building[] BuildableBuilding;
+
+    public Building FindBuilding(string name)
     {
-        
+        foreach (Building building in BuildableBuilding)
+        {
+            if (building.name.Equals(name, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return building;
+            }
+        }
+        return null;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
