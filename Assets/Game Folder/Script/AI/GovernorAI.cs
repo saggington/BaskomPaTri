@@ -64,8 +64,8 @@ public class GovernorAI : MonoBehaviour
     {
         if (buildableTiles[0] == null)
             CancelInvoke(nameof(ConsiderBuild));
-        int population, money, materials, workers = 0;
-        EconomyManager.Instance.GetRessource(out population, out money, out materials, out workers);
+        int population, money, materials = 0;
+        EconomyManager.Instance.GetRessource(out population, out money, out materials, out population);
         //Debug.Log($"Governor AI: Consider Build - Population: {population}, Money: {money}, Materials: {materials}, Workers: {workers}");
         switch (EconomyManager.Instance.GetCurrentPolicy())
         {
@@ -76,7 +76,7 @@ public class GovernorAI : MonoBehaviour
                     if (CommercialChance > Random.value)
                     {
                         Building building = FindBuildingByType(BuildingType.Commercial);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && workers >= building.cost.workers)
+                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                         {
                             //Debug.Log($"Governor AI: Building Commercial at {buildableTiles[0].transform.position}");
                             GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
@@ -88,7 +88,7 @@ public class GovernorAI : MonoBehaviour
                     else if (ResidentialChance > Random.value)
                     {
                         Building building = FindBuildingByType(BuildingType.Residential);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && workers >= building.cost.workers)
+                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                         {
                             //Debug.Log($"Governor AI: Building Residential at {buildableTiles[0].transform.position}");
                             GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
@@ -100,7 +100,7 @@ public class GovernorAI : MonoBehaviour
                     else
                     {
                         Building building = FindBuildingByType(BuildingType.Industrial);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && workers >= building.cost.workers)
+                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                         {
                             //Debug.Log($"Governor AI: Building Industrial at {buildableTiles[0].transform.position}");
                             GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
@@ -122,7 +122,7 @@ public class GovernorAI : MonoBehaviour
                         //Debug.Log("Governor AI: Building Commercial due to Subsidy policy");
                         Building building = FindBuildingByType(BuildingType.Commercial);
                         //Debug.Log($"Governor AI: Building Commercial at {buildableTiles[0].transform.position}, Cost {building.cost}");
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && workers >= building.cost.workers)
+                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                         {
                             //Debug.Log($"Governor AI: Building Commercial at {buildableTiles[0].transform.position}");
                             GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
@@ -136,7 +136,7 @@ public class GovernorAI : MonoBehaviour
                         //Debug.Log("Governor AI: Building Industrial due to Subsidy policy");
                         Building building = FindBuildingByType(BuildingType.Industrial);
                         //Debug.Log($"Governor AI: Building Industrial at {buildableTiles[0].transform.position}, Cost {building.cost}");
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && workers >= building.cost.workers)
+                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                         {
                             Debug.Log($"Governor AI: Building Industrial at {buildableTiles[0].transform.position}");
                             GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
@@ -150,7 +150,7 @@ public class GovernorAI : MonoBehaviour
                         //Debug.Log("Governor AI: Building Residential due to Subsidy policy");
                         Building building = FindBuildingByType(BuildingType.Residential);
                         //Debug.Log($"Governor AI: Building Residential at {buildableTiles[0].transform.position}, Cost {building.cost}");
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && workers >= building.cost.workers)
+                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                         {
                            //Debug.Log($"Governor AI: Building Residential at {buildableTiles[0].transform.position}");
                             GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
@@ -171,7 +171,7 @@ public class GovernorAI : MonoBehaviour
                     if (ResidentialChance > Random.value)
                     {
                         Building building = FindBuildingByType(BuildingType.Residential);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && workers >= building.cost.workers)
+                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                         {
                             //Debug.Log($"Governor AI: Building Residential at {buildableTiles[0].transform.position}");
                             GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
@@ -183,7 +183,7 @@ public class GovernorAI : MonoBehaviour
                     else if (IndustrialChance > Random.value)
                     {
                         Building building = FindBuildingByType(BuildingType.Industrial);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && workers >= building.cost.workers)
+                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                         {
                             //Debug.Log($"Governor AI: Building Industrial at {buildableTiles[0].transform.position}");
                             GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
@@ -195,7 +195,7 @@ public class GovernorAI : MonoBehaviour
                     else
                     {
                         Building building = FindBuildingByType(BuildingType.Commercial);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && workers >= building.cost.workers)
+                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                         {
                             //Debug.Log($"Governor AI: Building Commercial at {buildableTiles[0].transform.position}");
                             GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
