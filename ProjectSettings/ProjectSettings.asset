@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: ad7206b948a0fc14cba0c07a0bed07a2
+  productGUID: a4c04683dc2119748bb191ff147f8035
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -849,7 +849,7 @@ PlayerSettings:
   cloudProjectId: 9df9fca1-aafd-43cd-8151-1ecdb495601c
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
+  projectName: BaskomPaTri 2025-07-04_20-54-34
   organizationId: saggington
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
