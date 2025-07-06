@@ -17,6 +17,7 @@ public class GovernorAI : MonoBehaviour
     private void Start()
     {
         InvokeRepeating(nameof(ConsiderBuild), ConsiderBuildInterval, ConsiderBuildInterval);
+        InvokeRepeating(nameof(RandomClickable), 10f, 10f);
     }
 
     public Building FindBuilding(string name)
@@ -60,17 +61,17 @@ public class GovernorAI : MonoBehaviour
         return null;
     }
 
+    public void RandomClickable()
+    {
+        GameManager.Instance.RandomClickable();
+    }
+
     public void ConsiderBuild()
     {
         if (buildableTiles[0] == null)
             CancelInvoke(nameof(ConsiderBuild));
-<<<<<<< Updated upstream
-        int population, money, materials = 0;
-        EconomyManager.Instance.GetRessource(out population, out money, out materials);
-=======
-        int population, food, money, materials = 0;
-        EconomyManager.Instance.GetRessource(out population, out food, out money, out materials, out population);
->>>>>>> Stashed changes
+        int population, money, materials, food = 0;
+        EconomyManager.Instance.GetRessource(out population, out money, out materials, out food);
         //Debug.Log($"Governor AI: Consider Build - Population: {population}, Money: {money}, Materials: {materials}, Workers: {workers}");
         if (Random.value < BuildChance)
         {
