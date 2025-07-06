@@ -6,6 +6,7 @@ public class EconomyManager : MonoBehaviour
 
     [Header("Economy Settings")]
     [SerializeField] int Population;
+    [SerializeField] int Food;
     [SerializeField] int Money;
     [SerializeField] int Materials;
     [SerializeField] IncomeGenerator incomeGenerator;
@@ -13,6 +14,7 @@ public class EconomyManager : MonoBehaviour
     [Header("Income Setting")]
     [SerializeField] float timeToGenerateIncome = 5f;
 
+<<<<<<< Updated upstream
     [Header("Policy Settings")]
     [SerializeField] PolicyModifier CurrentPolicyModifier = new PolicyModifier
     {
@@ -24,6 +26,9 @@ public class EconomyManager : MonoBehaviour
 
     [SerializeField] PolicySO policies;
 
+=======
+    [SerializeField] private ResourceUIManager resourceUIManager;
+>>>>>>> Stashed changes
     private void Awake()
     {
         if (Instance == null)
@@ -43,9 +48,14 @@ public class EconomyManager : MonoBehaviour
         PolicyProcessing();
     }
 
+<<<<<<< Updated upstream
     public void GetRessource(out int population, out int money, out int materials)
+=======
+    public void GetRessource(out int population, out int food, out int money, out int materials, out int workers)
+>>>>>>> Stashed changes
     {
         population = Population;
+        food = Food;
         money = Money;
         materials = Materials;
     }
@@ -68,8 +78,34 @@ public class EconomyManager : MonoBehaviour
     #region POLICY MANAGEMENT
     protected void PolicyProcessing()
     {
+<<<<<<< Updated upstream
         GetRandomPolicy(PolicyType.Tax, out string taxName, out string taxDesc, out PolicyModifier taxMod);
         AddPolicyModifier(taxMod);
+=======
+        switch(CurrentPolicyType)
+        {
+            case PolicyType.Tax:
+                ApplyTaxPolicy();
+                break;
+            case PolicyType.Subsidy:
+                ApplySubsidyPolicy();
+                break;
+            case PolicyType.Regulation:
+                ApplyRegulationPolicy();
+                break;
+                case PolicyType.None:
+                CurrentPolicyModifier = new PolicyModifier
+                {
+                    policyType = PolicyType.None,
+                    fPopulationMod = 1f,
+                    fFoodMod = 1f,
+                    fMoneyMod = 1f,
+                    fMaterialsMod = 1f,
+                    fWorkersMod = 1f
+                };
+                break;
+        }
+>>>>>>> Stashed changes
     }
 
     protected void AddPolicyModifier(PolicyModifier mod)
@@ -87,9 +123,17 @@ public class EconomyManager : MonoBehaviour
         string descriptions = "No Policy Description";
         PolicyModifier policyModifier = new PolicyModifier
         {
+<<<<<<< Updated upstream
             fPopulationMod = 1f,
             fMoneyMod = 1f,
             fMaterialsMod = 1f,
+=======
+            policyType = PolicyType.Tax,
+            fPopulationMod = -0.5f,
+            fFoodMod = -0.5f,
+            fMoneyMod = 2f,
+            fMaterialsMod = 0.5f,
+>>>>>>> Stashed changes
             fWorkersMod = 1f
         };
         
@@ -121,6 +165,34 @@ public class EconomyManager : MonoBehaviour
         mod = policyModifier;
     }
 
+<<<<<<< Updated upstream
+=======
+    private void ApplySubsidyPolicy()
+    {
+        CurrentPolicyModifier = new PolicyModifier
+        {
+            policyType = PolicyType.Subsidy,
+            fPopulationMod = 2f,
+            fFoodMod = 1.5f,
+            fMoneyMod = -1f,
+            fMaterialsMod = 1f,
+            fWorkersMod = 0.5f
+        };
+    }
+
+    private void ApplyRegulationPolicy()
+    {
+        CurrentPolicyModifier = new PolicyModifier
+        {
+            policyType = PolicyType.Regulation,
+            fPopulationMod = 0.5f,
+            fFoodMod = 1f,
+            fMoneyMod = 1f,
+            fMaterialsMod = 2f,
+            fWorkersMod = 1.5f
+        };
+    }
+>>>>>>> Stashed changes
     #endregion
 
     #region INCOME GENERATION
@@ -128,9 +200,19 @@ public class EconomyManager : MonoBehaviour
     public void GenerateIncome()
     {
         Population += Mathf.CeilToInt(incomeGenerator.iPopulation * CurrentPolicyModifier.fPopulationMod);
+<<<<<<< Updated upstream
         Money += Mathf.RoundToInt((incomeGenerator.iMoney * CurrentPolicyModifier.fMoneyMod));
         Materials += Mathf.RoundToInt(incomeGenerator.iMaterials * CurrentPolicyModifier.fMaterialsMod);
         Debug.Log($"Income Generated: Population = {Population}, Money = {Money}, Materials = {Materials}");
+=======
+        Food += Mathf.RoundToInt(incomeGenerator.iFood * CurrentPolicyModifier.fFoodMod);
+        Money += Mathf.RoundToInt((incomeGenerator.iMoney * CurrentPolicyModifier.fMoneyMod) - GetUpkeepCost());
+        Materials += Mathf.RoundToInt(incomeGenerator.iMaterials * CurrentPolicyModifier.fMaterialsMod);
+        Workers += Mathf.RoundToInt(incomeGenerator.iWorkers * CurrentPolicyModifier.fWorkersMod);
+        Debug.Log($"Income Generated: Population = {Population}, Money = {Money}, Materials = {Materials}, Workers = {Workers}");
+
+        resourceUIManager.UpdateResource(Population, Food, Materials, Money);
+>>>>>>> Stashed changes
     }
 
     public float GetUpkeepCost()
@@ -151,6 +233,7 @@ public class EconomyManager : MonoBehaviour
             {                
                 case BuildingType.Commercial:
                     incomeGenerator.iMoney += building.production;
+                    incomeGenerator.iFood += building.production;
                     break;
                 case BuildingType.Residential:
                     incomeGenerator.iPopulation += building.production;
@@ -180,6 +263,7 @@ public class IncomeGenerator
 {
     public PolicyType policyType;
     public int iPopulation;
+    public int iFood;
     public int iMoney;
     public int iMaterials;
     public int iWorkers;
@@ -189,6 +273,7 @@ public class IncomeGenerator
 public class PolicyModifier
 {
     public float fPopulationMod;
+    public float fFoodMod;
     public float fMoneyMod;
     public float fMaterialsMod;
     public float fWorkersMod;

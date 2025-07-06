@@ -76,7 +76,7 @@ namespace itsmakingthings_daynightcycle
 
 		void Update()
 		{
-			Debug.Log(_timeOfDay);
+
 			if (_isTimeRunning)
 			{
 				UpdateTime();

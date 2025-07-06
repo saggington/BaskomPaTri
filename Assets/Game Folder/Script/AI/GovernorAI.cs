@@ -64,8 +64,13 @@ public class GovernorAI : MonoBehaviour
     {
         if (buildableTiles[0] == null)
             CancelInvoke(nameof(ConsiderBuild));
+<<<<<<< Updated upstream
         int population, money, materials = 0;
         EconomyManager.Instance.GetRessource(out population, out money, out materials);
+=======
+        int population, food, money, materials = 0;
+        EconomyManager.Instance.GetRessource(out population, out food, out money, out materials, out population);
+>>>>>>> Stashed changes
         //Debug.Log($"Governor AI: Consider Build - Population: {population}, Money: {money}, Materials: {materials}, Workers: {workers}");
         if (Random.value < BuildChance)
         {
