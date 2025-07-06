@@ -12,7 +12,7 @@ public class GovernorAI : MonoBehaviour
     public float CommercialChance = 0.3f;
     public float IndustrialChance = 0.2f;
 
-    public float ConsiderBuildInterval = 3f; // Time in seconds between build considerations
+    public float ConsiderBuildInterval = 10f; // Time in seconds between build considerations
 
     private void Start()
     {
@@ -65,146 +65,77 @@ public class GovernorAI : MonoBehaviour
         if (buildableTiles[0] == null)
             CancelInvoke(nameof(ConsiderBuild));
         int population, money, materials = 0;
-        EconomyManager.Instance.GetRessource(out population, out money, out materials, out population);
+        EconomyManager.Instance.GetRessource(out population, out money, out materials);
         //Debug.Log($"Governor AI: Consider Build - Population: {population}, Money: {money}, Materials: {materials}, Workers: {workers}");
-        switch (EconomyManager.Instance.GetCurrentPolicy())
+        if (Random.value < BuildChance)
         {
-            case PolicyType.Tax:
-                //Debug.Log("Governor AI: Current Policy is Tax");
-                if (Random.value < BuildChance * 0.5f)
+            if (CommercialChance > Random.value)
+            {
+                Building building = FindBuildingByType(BuildingType.Commercial);
+                if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
                 {
-                    if (CommercialChance > Random.value)
-                    {
-                        Building building = FindBuildingByType(BuildingType.Commercial);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
-                        {
-                            //Debug.Log($"Governor AI: Building Commercial at {buildableTiles[0].transform.position}");
-                            GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
-                            buildableTiles[0].Building = building;
-                            buildableTiles[0].buildingType = building.type;
-                            buildableTiles = buildableTiles.Skip(1).ToArray();
-                        }
-                    }
-                    else if (ResidentialChance > Random.value)
-                    {
-                        Building building = FindBuildingByType(BuildingType.Residential);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
-                        {
-                            //Debug.Log($"Governor AI: Building Residential at {buildableTiles[0].transform.position}");
-                            GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
-                            buildableTiles[0].Building = building;
-                            buildableTiles[0].buildingType = building.type;
-                            buildableTiles = buildableTiles.Skip(1).ToArray();
-                        }
-                    }
-                    else
-                    {
-                        Building building = FindBuildingByType(BuildingType.Industrial);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
-                        {
-                            //Debug.Log($"Governor AI: Building Industrial at {buildableTiles[0].transform.position}");
-                            GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
-                            buildableTiles[0].Building = building;
-                            buildableTiles[0].buildingType = building.type;
-                            buildableTiles = buildableTiles.Skip(1).ToArray();
-                        }
-                    }
+                    //Debug.Log($"Governor AI: Building Commercial at {buildableTiles[0].transform.position}");
+                    GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
+                    buildableTiles[0].Building = building;
+                    buildableTiles[0].buildingType = building.type;
+                    buildableTiles = buildableTiles.Skip(1).ToArray();
+                    SpawnChancesRefactor(building.type);
                 }
+            }
+            else if (ResidentialChance > Random.value)
+            {
+                Building building = FindBuildingByType(BuildingType.Residential);
+                if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
+                {
+                    //Debug.Log($"Governor AI: Building Residential at {buildableTiles[0].transform.position}");
+                    GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
+                    buildableTiles[0].Building = building;
+                    buildableTiles[0].buildingType = building.type;
+                    buildableTiles = buildableTiles.Skip(1).ToArray();
+                    SpawnChancesRefactor(building.type);
+                }
+            }
+            else if (IndustrialChance > Random.value)
+            {
+                Building building = FindBuildingByType(BuildingType.Industrial);
+                if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
+                {
+                    //Debug.Log($"Governor AI: Building Industrial at {buildableTiles[0].transform.position}");
+                    GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
+                    buildableTiles[0].Building = building;
+                    buildableTiles[0].buildingType = building.type;
+                    buildableTiles = buildableTiles.Skip(1).ToArray();
+                    SpawnChancesRefactor(building.type);
+                }
+            }
+            else             
+            {
+                Debug.Log("Governor AI: No suitable building type found or insufficient resources.");
+            }
+        }
+    }
+
+    public void SpawnChancesRefactor(BuildingType type)
+    {
+        switch(type)
+        {
+            case BuildingType.Commercial:
+                CommercialChance = Mathf.Clamp(CommercialChance - 0.1f, 0f, 1f);
+                ResidentialChance = Mathf.Clamp(ResidentialChance + 0.05f, 0f, 1f);
+                IndustrialChance = Mathf.Clamp(IndustrialChance + 0.05f, 0f, 1f);
                 break;
-
-            case PolicyType.Subsidy:
-                //Debug.Log("Governor AI: Current Policy is Subsidy");
-                if (Random.value < BuildChance * 1.2f)
-                {
-                    //Debug.Log("Governor AI: Deciding to build based on Subsidy policy");
-                    if (CommercialChance > Random.value)
-                    {
-                        //Debug.Log("Governor AI: Building Commercial due to Subsidy policy");
-                        Building building = FindBuildingByType(BuildingType.Commercial);
-                        //Debug.Log($"Governor AI: Building Commercial at {buildableTiles[0].transform.position}, Cost {building.cost}");
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
-                        {
-                            //Debug.Log($"Governor AI: Building Commercial at {buildableTiles[0].transform.position}");
-                            GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
-                            buildableTiles[0].Building = building;
-                            buildableTiles[0].buildingType = building.type;
-                            buildableTiles = buildableTiles.Skip(1).ToArray();
-                        }
-                    }
-                    else if (IndustrialChance > Random.value)
-                    {
-                        //Debug.Log("Governor AI: Building Industrial due to Subsidy policy");
-                        Building building = FindBuildingByType(BuildingType.Industrial);
-                        //Debug.Log($"Governor AI: Building Industrial at {buildableTiles[0].transform.position}, Cost {building.cost}");
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
-                        {
-                            Debug.Log($"Governor AI: Building Industrial at {buildableTiles[0].transform.position}");
-                            GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
-                            buildableTiles[0].Building = building;
-                            buildableTiles[0].buildingType = building.type;
-                            buildableTiles = buildableTiles.Skip(1).ToArray();
-                        }
-                    }
-                    else
-                    {
-                        //Debug.Log("Governor AI: Building Residential due to Subsidy policy");
-                        Building building = FindBuildingByType(BuildingType.Residential);
-                        //Debug.Log($"Governor AI: Building Residential at {buildableTiles[0].transform.position}, Cost {building.cost}");
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
-                        {
-                           //Debug.Log($"Governor AI: Building Residential at {buildableTiles[0].transform.position}");
-                            GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
-                            buildableTiles[0].Building = building;
-                            buildableTiles[0].buildingType = building.type;
-                            buildableTiles = buildableTiles.Skip(1).ToArray();
-                        }
-                    }
-
-                }
+            case BuildingType.Residential:
+                CommercialChance = Mathf.Clamp(CommercialChance + 0.05f, 0f, 1f);
+                ResidentialChance = Mathf.Clamp(ResidentialChance - 0.1f, 0f, 1f);
+                IndustrialChance = Mathf.Clamp(IndustrialChance + 0.05f, 0f, 1f);
                 break;
-
-            case PolicyType.Regulation:
-                //Debug.Log("Governor AI: Current Policy is Regulation");
-                if (Random.value < BuildChance * 0.75f)
-                {
-
-                    if (ResidentialChance > Random.value)
-                    {
-                        Building building = FindBuildingByType(BuildingType.Residential);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
-                        {
-                            //Debug.Log($"Governor AI: Building Residential at {buildableTiles[0].transform.position}");
-                            GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
-                            buildableTiles[0].Building = building;
-                            buildableTiles[0].buildingType = building.type;
-                            buildableTiles = buildableTiles.Skip(1).ToArray();
-                        }
-                    }
-                    else if (IndustrialChance > Random.value)
-                    {
-                        Building building = FindBuildingByType(BuildingType.Industrial);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
-                        {
-                            //Debug.Log($"Governor AI: Building Industrial at {buildableTiles[0].transform.position}");
-                            GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
-                            buildableTiles[0].Building = building;
-                            buildableTiles[0].buildingType = building.type;
-                            buildableTiles = buildableTiles.Skip(1).ToArray();
-                        }
-                    }
-                    else
-                    {
-                        Building building = FindBuildingByType(BuildingType.Commercial);
-                        if (building != null && money >= building.cost.money && materials >= building.cost.materials && population >= building.cost.population)
-                        {
-                            //Debug.Log($"Governor AI: Building Commercial at {buildableTiles[0].transform.position}");
-                            GameManager.Instance.BuildBuilding(building, buildableTiles[0].transform);
-                            buildableTiles[0].Building = building;
-                            buildableTiles[0].buildingType = building.type;
-                            buildableTiles = buildableTiles.Skip(1).ToArray();
-                        }
-                    }
-                }
+            case BuildingType.Industrial:
+                CommercialChance = Mathf.Clamp(CommercialChance + 0.05f, 0f, 1f);
+                ResidentialChance = Mathf.Clamp(ResidentialChance + 0.05f, 0f, 1f);
+                IndustrialChance = Mathf.Clamp(IndustrialChance - 0.1f, 0f, 1f);
+                break;
+            default:
+                Debug.LogWarning("Governor AI: Invalid building type provided for spawn chances refactor.");
                 break;
         }
     }

@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Buildable Buildings")]
     public List<Building> buildings;
+    public List<Popup> popups;
+    public GameObject popupPrefab;
 
     private void Awake()
     {
@@ -45,8 +47,34 @@ public class GameManager : MonoBehaviour
         var a = Instantiate(b.buildingPrefab, where.position, Quaternion.identity);
         a.transform.SetParent(BuildingPool, true);
         buildings.Add(b);
-        economyManager.ReduceRessource(0, b.cost.money, b.cost.materials, b.cost.population);
+        popups.Add(new Popup
+        {
+            buildingBonus = new BuildingBonus
+            {
+                Population = b.cost.population / 2,
+                Money = b.cost.money / 2,
+                Materials = b.cost.materials / 2,
+                chances = 0.2f,
+            },
+        });
+        economyManager.ReduceRessource(b.cost.population, b.cost.money, b.cost.materials);
         economyManager.SetIncomeGenerator();
+    }
+
+    public void RandomClickable()
+    {
+        foreach (var c in popups)
+        {
+            if (c.buildingBonus.chances > UnityEngine.Random.value)
+            {
+                Instantiate(popupPrefab, c.transform.position, Quaternion.identity, BuildingPool);
+                c.isClickable = true;
+            }
+            else
+            {
+                c.isClickable = false;
+            }
+        }
     }
 
     public void RegisterTile(Buildable b)

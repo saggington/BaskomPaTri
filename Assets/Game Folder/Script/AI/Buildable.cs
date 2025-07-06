@@ -10,3 +10,12 @@ public class Buildable : MonoBehaviour
         GameManager.Instance.RegisterTile(this);
     }
 }
+
+[System.Serializable]
+public class BuildingBonus
+{
+    public float Money;
+    public float Population;
+    public float Materials;
+    public float chances;
+}

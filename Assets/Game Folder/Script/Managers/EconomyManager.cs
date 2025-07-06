@@ -8,15 +8,21 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] int Population;
     [SerializeField] int Money;
     [SerializeField] int Materials;
-    [SerializeField] int Workers;
     [SerializeField] IncomeGenerator incomeGenerator;
-
-    [Header("Tax and Policy")]
-    [SerializeField] PolicyType CurrentPolicyType = PolicyType.None;
-    [SerializeField] PolicyModifier CurrentPolicyModifier;
 
     [Header("Income Setting")]
     [SerializeField] float timeToGenerateIncome = 5f;
+
+    [Header("Policy Settings")]
+    [SerializeField] PolicyModifier CurrentPolicyModifier = new PolicyModifier
+    {
+        fPopulationMod = 1f,
+        fMoneyMod = 1f,
+        fMaterialsMod = 1f,
+        fWorkersMod = 1f
+    };
+
+    [SerializeField] PolicySO policies;
 
     private void Awake()
     {
@@ -31,99 +37,90 @@ public class EconomyManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        PolicyProcessing();
-    }
-
     private void Start()
     {
         InvokeRepeating(nameof(GenerateIncome), timeToGenerateIncome, timeToGenerateIncome);
+        PolicyProcessing();
     }
 
-    public void GetRessource(out int population, out int money, out int materials, out int workers)
+    public void GetRessource(out int population, out int money, out int materials)
     {
         population = Population;
         money = Money;
         materials = Materials;
-        workers = Workers;
     }
 
-    public void ReduceRessource(int population, int money, int materials, int workers)
+    public void ReduceRessource(int population, int money, int materials)
     {
         Population -= population;
         Money -= money;
         Materials -= materials;
-        Workers -= workers;
     }
 
-    public PolicyType GetCurrentPolicy()
+    public void AddRessource(int population, int money, int materials)
     {
-        return CurrentPolicyType;
+        Population += population;
+        Money += money;
+        Materials += materials;
     }
+
 
     #region POLICY MANAGEMENT
     protected void PolicyProcessing()
     {
-        switch(CurrentPolicyType)
-        {
-            case PolicyType.Tax:
-                ApplyTaxPolicy();
-                break;
-            case PolicyType.Subsidy:
-                ApplySubsidyPolicy();
-                break;
-            case PolicyType.Regulation:
-                ApplyRegulationPolicy();
-                break;
-                case PolicyType.None:
-                CurrentPolicyModifier = new PolicyModifier
-                {
-                    policyType = PolicyType.None,
-                    fPopulationMod = 1f,
-                    fMoneyMod = 1f,
-                    fMaterialsMod = 1f,
-                    fWorkersMod = 1f
-                };
-                break;
-        }
+        GetRandomPolicy(PolicyType.Tax, out string taxName, out string taxDesc, out PolicyModifier taxMod);
+        AddPolicyModifier(taxMod);
     }
 
-    private void ApplyTaxPolicy()
+    protected void AddPolicyModifier(PolicyModifier mod)
     {
-        CurrentPolicyModifier = new PolicyModifier
+        CurrentPolicyModifier.fPopulationMod += mod.fPopulationMod;
+        CurrentPolicyModifier.fMoneyMod += mod.fMoneyMod;
+        CurrentPolicyModifier.fMaterialsMod += mod.fMaterialsMod;
+        CurrentPolicyModifier.fWorkersMod += mod.fWorkersMod;
+        Debug.Log($"Policy Modifier Applied: Population = {CurrentPolicyModifier.fPopulationMod}, Money = {CurrentPolicyModifier.fMoneyMod}, Materials = {CurrentPolicyModifier.fMaterialsMod}, Workers = {CurrentPolicyModifier.fWorkersMod}");
+    }
+
+    protected void GetRandomPolicy(PolicyType type, out string name, out string desc, out PolicyModifier mod)
+    {
+        string names = "No Policy";
+        string descriptions = "No Policy Description";
+        PolicyModifier policyModifier = new PolicyModifier
         {
-            policyType = PolicyType.Tax,
-            fPopulationMod = -0.5f,
-            fMoneyMod = 2f,
-            fMaterialsMod = 0.5f,
+            fPopulationMod = 1f,
+            fMoneyMod = 1f,
+            fMaterialsMod = 1f,
             fWorkersMod = 1f
         };
+        
+        switch(type)
+        {
+            case PolicyType.Tax:
+                names = policies.taxPolicy.TaxDescription[Random.Range(0, policies.taxPolicy.TaxDescription.Length)].Name;
+                descriptions = policies.taxPolicy.TaxDescription[Random.Range(0, policies.taxPolicy.TaxDescription.Length)].Description;
+                policyModifier = policies.taxPolicy.TaxModifiers[Random.Range(0, policies.taxPolicy.TaxModifiers.Length)];
+                break;
+            case PolicyType.Subsidy:
+                names = policies.foodPolicy.FoodDescription[Random.Range(0, policies.foodPolicy.FoodDescription.Length)].Name;
+                descriptions = policies.foodPolicy.FoodDescription[Random.Range(0, policies.foodPolicy.FoodDescription.Length)].Description;
+                policyModifier = policies.foodPolicy.FoodModifiers[Random.Range(0, policies.foodPolicy.FoodModifiers.Length)];
+                break;
+            case PolicyType.Regulation:
+                names = policies.materialPolicy.MaterialDescription[Random.Range(0, policies.materialPolicy.MaterialDescription.Length)].Name;
+                descriptions = policies.materialPolicy.MaterialDescription[Random.Range(0, policies.materialPolicy.MaterialDescription.Length)].Description;
+                policyModifier = policies.materialPolicy.MaterialModifiers[Random.Range(0, policies.materialPolicy.MaterialModifiers.Length)];
+                break;
+            default:
+                Debug.LogWarning("No valid policy type provided. Defaulting to None.");
+                break;
+        }
+
+        Debug.Log($"Random Policy Selected: {names} - {descriptions} with modifiers: Population = {policyModifier.fPopulationMod}, Money = {policyModifier.fMoneyMod}, Materials = {policyModifier.fMaterialsMod}, Workers = {policyModifier.fWorkersMod}");
+        name = names;
+        desc = descriptions;
+        mod = policyModifier;
     }
 
-    private void ApplySubsidyPolicy()
-    {
-        CurrentPolicyModifier = new PolicyModifier
-        {
-            policyType = PolicyType.Subsidy,
-            fPopulationMod = 2f,
-            fMoneyMod = -1f,
-            fMaterialsMod = 1f,
-            fWorkersMod = 0.5f
-        };
-    }
-
-    private void ApplyRegulationPolicy()
-    {
-        CurrentPolicyModifier = new PolicyModifier
-        {
-            policyType = PolicyType.Regulation,
-            fPopulationMod = 0.5f,
-            fMoneyMod = 1f,
-            fMaterialsMod = 2f,
-            fWorkersMod = 1.5f
-        };
-    }
     #endregion
 
     #region INCOME GENERATION
@@ -131,10 +128,9 @@ public class EconomyManager : MonoBehaviour
     public void GenerateIncome()
     {
         Population += Mathf.CeilToInt(incomeGenerator.iPopulation * CurrentPolicyModifier.fPopulationMod);
-        Money += Mathf.RoundToInt((incomeGenerator.iMoney * CurrentPolicyModifier.fMoneyMod) - GetUpkeepCost());
+        Money += Mathf.RoundToInt((incomeGenerator.iMoney * CurrentPolicyModifier.fMoneyMod));
         Materials += Mathf.RoundToInt(incomeGenerator.iMaterials * CurrentPolicyModifier.fMaterialsMod);
-        Workers += Mathf.RoundToInt(incomeGenerator.iWorkers * CurrentPolicyModifier.fWorkersMod);
-        Debug.Log($"Income Generated: Population = {Population}, Money = {Money}, Materials = {Materials}, Workers = {Workers}");
+        Debug.Log($"Income Generated: Population = {Population}, Money = {Money}, Materials = {Materials}");
     }
 
     public float GetUpkeepCost()
@@ -192,9 +188,24 @@ public class IncomeGenerator
 [System.Serializable]
 public class PolicyModifier
 {
-    public PolicyType policyType;
     public float fPopulationMod;
     public float fMoneyMod;
     public float fMaterialsMod;
     public float fWorkersMod;
+}
+
+[System.Serializable]
+public class Policy
+{
+    public PolicyType policyType;
+    public string name;
+    public string description;
+    public PolicyModifier modifier;
+    public Policy(PolicyType type, string name, string description, PolicyModifier modifier)
+    {
+        this.policyType = type;
+        this.name = name;
+        this.description = description;
+        this.modifier = modifier;
+    }
 }
