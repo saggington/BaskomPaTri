@@ -57,6 +57,13 @@ public class EconomyManager : MonoBehaviour
         Materials -= materials;
     }
 
+    public void AddRessource(int population, int money, int materials)
+    {
+        Population += population;
+        Money += money;
+        Materials += materials;
+    }
+
 
     #region POLICY MANAGEMENT
     protected void PolicyProcessing()

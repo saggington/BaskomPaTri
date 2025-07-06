@@ -32,7 +32,7 @@ MonoBehaviour:
       fMaterialsMod: 0
       fWorkersMod: 0
     - fPopulationMod: 0
-      fMoneyMod: 2
+      fMoneyMod: 5
       fMaterialsMod: 0
       fWorkersMod: 0
   foodPolicy:
