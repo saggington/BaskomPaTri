@@ -8521,6 +8521,10 @@ PrefabInstance:
       value: 0.76737833
       objectReference: {fileID: 0}
     - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: night.sunIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
       propertyPath: daybreak.sunColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -8535,6 +8539,14 @@ PrefabInstance:
     - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
       propertyPath: daybreak.sunColor.r
       value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: midday.sunIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: sunset.sunIntensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
       propertyPath: night.ambientColor.a
@@ -8554,6 +8566,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
       propertyPath: night.shadowStrength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
+      propertyPath: daybreak.sunIntensity
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6071240103999637639, guid: 9a9b18bcbb030b641bf42ddbfb08e910, type: 3}
@@ -40095,13 +40111,13 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -40137,7 +40153,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 10
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -40158,7 +40174,7 @@ Transform:
   m_GameObject: {fileID: 1416758922}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821794, y: -0.23456973, z: 0.109381676, w: 0.87542605}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 115.72, y: 20.85, z: -33.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
