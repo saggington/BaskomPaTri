@@ -17,6 +17,7 @@ public class GovernorAI : MonoBehaviour
     private void Start()
     {
         InvokeRepeating(nameof(ConsiderBuild), ConsiderBuildInterval, ConsiderBuildInterval);
+        InvokeRepeating(nameof(RandomClickable), 10f, 10f);
     }
 
     public Building FindBuilding(string name)
@@ -58,6 +59,11 @@ public class GovernorAI : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void RandomClickable()
+    {
+        GameManager.Instance.RandomClickable();
     }
 
     public void ConsiderBuild()
