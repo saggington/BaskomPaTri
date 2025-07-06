@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taxPolicy:
     TaxDescription:
-    - Name: Tax Increase
-      Description: Increase Tax
+    - Name: Incerase Tax
+      Description: Increase Tax For a lot
     - Name: Tax Burning
       Description: Increase Tax
     TaxModifiers:
@@ -36,8 +36,36 @@ MonoBehaviour:
       fMaterialsMod: 0
       fWorkersMod: 0
   foodPolicy:
-    FoodDescription: []
-    FoodModifiers: []
+    FoodDescription:
+    - Name: Food Supply
+      Description: Supply a lot of Food
+    - Name: Food Chain
+      Description: Chain a Food
+    FoodModifiers:
+    - fPopulationMod: 1
+      fMoneyMod: -0.5
+      fMaterialsMod: 2
+      fWorkersMod: 0
+    - fPopulationMod: 1
+      fMoneyMod: -0.5
+      fMaterialsMod: 2
+      fWorkersMod: 0
   materialPolicy:
-    MaterialDescription: []
-    MaterialModifiers: []
+    MaterialDescription:
+    - Name: Boost Production
+      Description: Boost Material Production
+    - Name: Material Hert
+      Description: Boost Material
+    MaterialModifiers:
+    - fPopulationMod: 0
+      fMoneyMod: -0.5
+      fMaterialsMod: 1
+      fWorkersMod: 0
+    - fPopulationMod: 0
+      fMoneyMod: 0
+      fMaterialsMod: 2
+      fWorkersMod: 0
+    - fPopulationMod: 0
+      fMoneyMod: -1
+      fMaterialsMod: 2
+      fWorkersMod: 0

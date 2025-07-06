@@ -17,5 +17,6 @@ public class BuildingBonus
     public float Money;
     public float Population;
     public float Materials;
+    public float Food;
     public float chances;
 }

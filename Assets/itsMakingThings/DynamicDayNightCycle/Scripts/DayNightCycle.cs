@@ -76,7 +76,7 @@ namespace itsmakingthings_daynightcycle
 
 		void Update()
 		{
-			Debug.Log(_timeOfDay);
+			//Debug.Log(_timeOfDay);
 			if (_isTimeRunning)
 			{
 				UpdateTime();
@@ -86,7 +86,22 @@ namespace itsmakingthings_daynightcycle
 
 		private void UpdateTime()
 		{
-			_timeOfDay += cycleSpeed * Time.deltaTime;
+            int hours = Mathf.FloorToInt(_timeOfDay);
+			if (hours == 9 && PolicyManager.Instance.alreadyChose == false)
+			{
+				PauseManager.PauseGame();
+				PolicyManager.Instance.OpenPolicyCardUI(true);
+            }
+			else if (hours == 21 && PolicyManager.Instance.alreadyChose == false)
+			{
+				PauseManager.PauseGame();
+                PolicyManager.Instance.OpenPolicyCardUI(true);
+            } else if (hours != 9 && hours != 21 && PolicyManager.Instance.alreadyChose == true)
+            {
+                PolicyManager.Instance.alreadyChose = false;
+            }
+
+				_timeOfDay += cycleSpeed * Time.deltaTime;
 			if (_timeOfDay >= 24f) _timeOfDay = 0f;
 
 			int currentMinute = Mathf.FloorToInt((_timeOfDay - Mathf.FloorToInt(_timeOfDay)) * 60); // ✅ Get exact minute
@@ -97,6 +112,11 @@ namespace itsmakingthings_daynightcycle
 				_lastTimeUpdated = currentMinute;
 				UpdateTimeUI();
 			}
+		}
+
+		private void GeneratePolicyCard()
+		{
+
 		}
 
 		private void UpdateTimeUI()

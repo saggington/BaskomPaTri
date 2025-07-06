@@ -8,6 +8,7 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] int Population;
     [SerializeField] int Money;
     [SerializeField] int Materials;
+    [SerializeField] int Food;
     [SerializeField] IncomeGenerator incomeGenerator;
 
     [Header("Income Setting")]
@@ -19,7 +20,7 @@ public class EconomyManager : MonoBehaviour
         fPopulationMod = 1f,
         fMoneyMod = 1f,
         fMaterialsMod = 1f,
-        fWorkersMod = 1f
+        fFoodMod = 1f
     };
 
     [SerializeField] PolicySO policies;
@@ -43,25 +44,28 @@ public class EconomyManager : MonoBehaviour
         PolicyProcessing();
     }
 
-    public void GetRessource(out int population, out int money, out int materials)
+    public void GetRessource(out int population, out int money, out int materials, out int food)
     {
         population = Population;
         money = Money;
         materials = Materials;
+        food = Food;
     }
 
-    public void ReduceRessource(int population, int money, int materials)
+    public void ReduceRessource(int population, int money, int materials, int food)
     {
         Population -= population;
         Money -= money;
         Materials -= materials;
+        Food -= food;
     }
 
-    public void AddRessource(int population, int money, int materials)
+    public void AddRessource(int population, int money, int materials, int food)
     {
         Population += population;
         Money += money;
         Materials += materials;
+        Food += food;
     }
 
 
@@ -72,16 +76,16 @@ public class EconomyManager : MonoBehaviour
         AddPolicyModifier(taxMod);
     }
 
-    protected void AddPolicyModifier(PolicyModifier mod)
+    public void AddPolicyModifier(PolicyModifier mod)
     {
         CurrentPolicyModifier.fPopulationMod += mod.fPopulationMod;
         CurrentPolicyModifier.fMoneyMod += mod.fMoneyMod;
         CurrentPolicyModifier.fMaterialsMod += mod.fMaterialsMod;
-        CurrentPolicyModifier.fWorkersMod += mod.fWorkersMod;
-        Debug.Log($"Policy Modifier Applied: Population = {CurrentPolicyModifier.fPopulationMod}, Money = {CurrentPolicyModifier.fMoneyMod}, Materials = {CurrentPolicyModifier.fMaterialsMod}, Workers = {CurrentPolicyModifier.fWorkersMod}");
+        CurrentPolicyModifier.fFoodMod += mod.fFoodMod;
+        Debug.Log($"Policy Modifier Applied: Population = {CurrentPolicyModifier.fPopulationMod}, Money = {CurrentPolicyModifier.fMoneyMod}, Materials = {CurrentPolicyModifier.fMaterialsMod}, Workers = {CurrentPolicyModifier.fFoodMod}");
     }
 
-    protected void GetRandomPolicy(PolicyType type, out string name, out string desc, out PolicyModifier mod)
+    public void GetRandomPolicy(PolicyType type, out string name, out string desc, out PolicyModifier mod)
     {
         string names = "No Policy";
         string descriptions = "No Policy Description";
@@ -90,32 +94,32 @@ public class EconomyManager : MonoBehaviour
             fPopulationMod = 1f,
             fMoneyMod = 1f,
             fMaterialsMod = 1f,
-            fWorkersMod = 1f
+            fFoodMod = 1f
         };
         
         switch(type)
         {
             case PolicyType.Tax:
-                names = policies.taxPolicy.TaxDescription[Random.Range(0, policies.taxPolicy.TaxDescription.Length)].Name;
-                descriptions = policies.taxPolicy.TaxDescription[Random.Range(0, policies.taxPolicy.TaxDescription.Length)].Description;
-                policyModifier = policies.taxPolicy.TaxModifiers[Random.Range(0, policies.taxPolicy.TaxModifiers.Length)];
+                names = policies.taxPolicy.TaxDescription[Random.Range(0, policies.taxPolicy.TaxDescription.Length - 1)].Name;
+                descriptions = policies.taxPolicy.TaxDescription[Random.Range(0, policies.taxPolicy.TaxDescription.Length - 1)].Description;
+                policyModifier = policies.taxPolicy.TaxModifiers[Random.Range(0, policies.taxPolicy.TaxModifiers.Length - 1)];
                 break;
             case PolicyType.Subsidy:
-                names = policies.foodPolicy.FoodDescription[Random.Range(0, policies.foodPolicy.FoodDescription.Length)].Name;
-                descriptions = policies.foodPolicy.FoodDescription[Random.Range(0, policies.foodPolicy.FoodDescription.Length)].Description;
-                policyModifier = policies.foodPolicy.FoodModifiers[Random.Range(0, policies.foodPolicy.FoodModifiers.Length)];
+                names = policies.foodPolicy.FoodDescription[Random.Range(0, policies.foodPolicy.FoodDescription.Length - 1)].Name;
+                descriptions = policies.foodPolicy.FoodDescription[Random.Range(0, policies.foodPolicy.FoodDescription.Length - 1)].Description;
+                policyModifier = policies.foodPolicy.FoodModifiers[Random.Range(0, policies.foodPolicy.FoodModifiers.Length - 1)];
                 break;
             case PolicyType.Regulation:
-                names = policies.materialPolicy.MaterialDescription[Random.Range(0, policies.materialPolicy.MaterialDescription.Length)].Name;
-                descriptions = policies.materialPolicy.MaterialDescription[Random.Range(0, policies.materialPolicy.MaterialDescription.Length)].Description;
-                policyModifier = policies.materialPolicy.MaterialModifiers[Random.Range(0, policies.materialPolicy.MaterialModifiers.Length)];
+                names = policies.materialPolicy.MaterialDescription[Random.Range(0, policies.materialPolicy.MaterialDescription.Length - 1)].Name;
+                descriptions = policies.materialPolicy.MaterialDescription[Random.Range(0, policies.materialPolicy.MaterialDescription.Length - 1)].Description;
+                policyModifier = policies.materialPolicy.MaterialModifiers[Random.Range(0, policies.materialPolicy.MaterialModifiers.Length - 1)];
                 break;
             default:
                 Debug.LogWarning("No valid policy type provided. Defaulting to None.");
                 break;
         }
 
-        Debug.Log($"Random Policy Selected: {names} - {descriptions} with modifiers: Population = {policyModifier.fPopulationMod}, Money = {policyModifier.fMoneyMod}, Materials = {policyModifier.fMaterialsMod}, Workers = {policyModifier.fWorkersMod}");
+        Debug.Log($"Random Policy Selected: {names} - {descriptions} with modifiers: Population = {policyModifier.fPopulationMod}, Money = {policyModifier.fMoneyMod}, Materials = {policyModifier.fMaterialsMod}, Workers = {policyModifier.fFoodMod}");
         name = names;
         desc = descriptions;
         mod = policyModifier;
@@ -154,7 +158,7 @@ public class EconomyManager : MonoBehaviour
                     break;
                 case BuildingType.Residential:
                     incomeGenerator.iPopulation += building.production;
-                    incomeGenerator.iWorkers += Mathf.FloorToInt(building.production * CurrentPolicyModifier.fWorkersMod);
+                    incomeGenerator.iFood += Mathf.FloorToInt(building.production * CurrentPolicyModifier.fFoodMod);
                     break;
                 case BuildingType.Industrial:
                     incomeGenerator.iMaterials += building.production;
@@ -182,7 +186,7 @@ public class IncomeGenerator
     public int iPopulation;
     public int iMoney;
     public int iMaterials;
-    public int iWorkers;
+    public int iFood;
 }
 
 [System.Serializable]
@@ -191,7 +195,7 @@ public class PolicyModifier
     public float fPopulationMod;
     public float fMoneyMod;
     public float fMaterialsMod;
-    public float fWorkersMod;
+    public float fFoodMod;
 }
 
 [System.Serializable]

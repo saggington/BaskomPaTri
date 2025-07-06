@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
                 chances = 0.2f,
             },
         });
-        economyManager.ReduceRessource(b.cost.population, b.cost.money, b.cost.materials);
+        economyManager.ReduceRessource(b.cost.population, b.cost.money, b.cost.materials, b.cost.food);
         economyManager.SetIncomeGenerator();
     }
 
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         {
             if (c.buildingBonus.chances > UnityEngine.Random.value)
             {
-                Instantiate(popupPrefab, c.transform.position, Quaternion.identity, BuildingPool);
+                Instantiate(popupPrefab, c.transform.position, Quaternion.identity, c.popupPlace);
                 c.isClickable = true;
             }
             else
@@ -101,6 +101,7 @@ public struct BuildingCost
     public int money;
     public int materials;
     public int population;
+    public int food;
 }
 
 public enum BuildingType
